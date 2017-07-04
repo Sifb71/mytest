@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <title>System Error!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ static_url('plugins/bootstrap/css/bootstrap.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ static_url('css/style.css') }}">
 
 
+<body class="flat-blue login-page">
+<div class="container">
+    <div>
+        <div class=" row margin-top-256">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
 
-<meta charset="UTF-8">
-<title>پیام سیستم</title>
-<link rel='stylesheet'  href="{{ static_url('css/user_panel/style.css') }}" type='text/css' />
-    <link rel='stylesheet' href="{{ static_url('fonts/index/fonticon/style.css') }}" type='text/css'/>
-    <script type="text/javascript" src="{{ static_url('js/index/jquery-1.10.2.min.js') }}"></script>
-<link rel='stylesheet'  href="{{ static_url('css/public.css') }}" type='text/css' />
-
-
-</head>
-<body>
-
-<div class="text-center font-size-error ">
-شما اجازه دسترسی به این صفحه را ندارید.
+                <div class="alert fresh-color alert-danger" role="alert">
+                    <strong class="font-size-25">System Error  (500)</strong>
+                    <div class="font-size-20">
+                        An error occurred. Please try again later."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- Javascript Libs -->
 
-</body></html>
+</body>
+
+</html>

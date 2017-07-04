@@ -9,8 +9,8 @@ __author__ = 'Sifb71'
 from WebApp.handlers.base import WebBaseHandler, authentication
 
 
-class UserProfileHandler(WebBaseHandler):
+class UserAddressListHandler(WebBaseHandler):
     @gen.coroutine
     def get(self, *args, **kwargs):
-        self.data['title'] = "My Profile"
-        self.render("base/users/profile/profile.html", **self.data)
+        self.data['title'] = "Valid Address List"
+        self.render("base/users/address_list/address_list.html", **self.data)

@@ -5,7 +5,73 @@
 
 {% block container %}
 
-salam
+<div class="container">
+    <div class="row">
+        <div class="page-title">
+            Welcome to my testing code project
+        </div>
+    <div class="my-forms">
+        <div class="col-md-2"></div>
+        <div class="col-md-4 signup-form">
+            <div class="form-title">
+            Signup for new Member!
+                </div>
+
+
+            <form>
+                <div class="form-group ">
+                    <input type="email" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="FirstName">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="LastName">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+
+                <div class="form-group">
+                    <input type="re-password" class="form-control" placeholder="Password">
+                </div>
+                <div class="alert alert-danger" role="alert">
+                    alertBox
+                </div>
+
+                <button type="submit" class="btn btn-success">Signup</button>
+
+            </form>
+
+        </div>
+        <div class="col-md-4">
+            <div>
+                <div class="form-title">
+
+                Login here!
+                    </div>
+            </div>
+            <form>
+                <div class="form-group t">
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="alert alert-danger" role="alert">
+                    alertBox
+                </div>
+
+                <button type="submit" class="btn btn-info">login</button>
+
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+        </div>
+
+    </div>
+
+</div>
 
 
 {% end block container %}

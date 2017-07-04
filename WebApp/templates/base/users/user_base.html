@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+<meta charset="UTF-8">
+<title>{{ title }}</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="{{ static_url('plugins/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ static_url('css/font-awesome.min.css') }}">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="{{ static_url('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ static_url('css/flat-blue.css') }}">
+
+
+    {% block css %}
+    {% end block css %}
+
+</head>
+<body class="flat-blue">
+    <div class="app-container">
+        <div class="row content-container">
+            <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active yekan">{{ title }}</li>
+                        </ol>
+
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                            <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle yekan" data-toggle="dropdown" role="button" aria-expanded="false">YourFirstName<span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+
+                                <li>
+                                    <div class="profile-info yekan">
+                                        <h4 class="username">Welcome Your FirstName!</h4>
+{#                                        <p>onlinescoer</p>#}
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <a href="{{ reverse_url('MyProfile')}}"><button type="button" class="btn btn-default yekan"><i class="fa fa-user"></i>MyProfile</button></a>
+                                           <a href=""><button type="button" class="btn btn-default yekan"><i class="fa fa-sign-out "></i>Logout</button></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="side-menu sidebar-inverse">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="side-menu-container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                <div class="icon fa fa-chevron-circle-right"></div>
+                                <div class="title">Testing Project</div>
+                            </a>
+                            <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+                        </div>
+                        <ul class="nav navbar-nav ">
+                            <li {% if handler.__class__.__name__ == "UserProfileHandler" %}class="active"{% end %}>
+                                <a href="{{ reverse_url('MyProfile') }}">
+                                    <span class="icon fa fa-user"></span><span class="title yekan ">MyProfile</span>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav ">
+                            <li {% if handler.__class__.__name__ == "UserAddressListHandler" %}class="active"{% end %}>
+                                <a href="{{ reverse_url('AddressList')}}">
+                                    <span class="icon fa fa-file-text-o"></span><span class="title yekan ">Valid Addresss</span>
+                                </a>
+                            </li>
+
+                        </ul>
+
+
+
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+            </div>
+            <!-- Main Content -->
+{% block container %}
+{% end block container %}
+        <footer class="app-footer">
+            <div class="wrapper">
+                <a href="#"></a> © 2015 Copyright.
+            </div>
+        </footer>
+
+
+            <!-- Javascript Libs -->
+  <script type="text/javascript" src="{{ static_url('plugins/jquery/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ static_url('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- Javascript -->
+{% block scripts %}
+{% end block scripts %}
+</body>
+</html>

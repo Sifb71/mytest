@@ -1,0 +1,108 @@
+{% extends "../user_base.html" %}
+
+{% block css %}
+{% end block css %}
+
+{% block container %}
+
+
+<div class="container-fluid">
+    <div class="side-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title"></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="step">
+
+
+                            <div class="tab-content">
+
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div id="DataTables_Table_0_wrapper"
+                                                     class="dataTables_wrapper form-inline dt-bootstrap">
+                                                    <div class="top">
+
+                                                        <table class="datatable table table-striped dataTable"
+                                                               cellspacing="0" width="100%" id="DataTables_Table_0"
+                                                               role="grid" aria-describedby="DataTables_Table_0_info">
+
+
+                                                            <tbody>
+                                                            <tr role="row" class="even">
+                                                                <td class="text-center">row</td>
+                                                                <td class="text-center">name</td>
+                                                                <td class="text-center">address</td>
+
+                                                            </tr>
+                                                            {% set flag = True %}
+
+
+                                                            <tr role="row" {% if flag %}class="odd"{% else %}class="even"{% end %}>
+                                                            <td class="text-green text-center">1</td>
+                                                            <td  class="text-center">Iman FeyzBakhsh</td>
+                                                            <td class="text-center">Attar Street - Qaen</td>
+
+                                                            </tr>
+
+                                                            {% if flag %}
+                                                            {% set flag = False %}
+                                                            {% else %}
+                                                            {% set flag = True %}
+                                                            {% end %}
+
+
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="bottom">
+                                                            <div class="dataTables_paginate paging_simple_numbers"
+                                                                 id="DataTables_Table_0_paginate">
+                                                                <ul class="pagination">
+
+                                                                    <li class="paginate_button previous"
+                                                                        id="DataTables_Table_0_previous"><a href=""
+                                                                                                            aria-controls="DataTables_Table_0"
+                                                                                                            tabindex="0">prev</a>
+                                                                    </li>
+
+                                                                    <li class="paginate_button active"><a href="#"
+                                                                                                          aria-controls="DataTables_Table_0"
+                                                                                                          tabindex="0">2</a>
+                                                                    </li>
+
+                                                                    <li class="paginate_button next"
+                                                                        id="DataTables_Table_0_next"><a href=""
+                                                                                                        aria-controls="DataTables_Table_0"
+                                                                                                        tabindex="0">next</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+
+        </div>
+    </div>
+
+    {% end block %}

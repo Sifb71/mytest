@@ -6,7 +6,14 @@
     <meta charset="UTF-8">
     <meta name="description" content=""/>
 
+    <link rel="stylesheet" href="{{ static_url('plugins/bootstrap/css/bootstrap.min.css') }}"  crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ static_url('plugins/bootstrap/css/bootstrap-theme.min.css') }}" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ static_url('css/mystyle.css') }}">
+
     {% block css %}
+
+
     {% end block css %}
 
 </head>
@@ -18,12 +25,8 @@
 {% end block container %}
 
 
-
-
-{% if handler.current_user %}
-
-{% end %}
 {% block scripts %}
+<script src="{{ static_url('plugins/bootstrap/css/bootstrap.min.js') }}" crossorigin="anonymous"></script>
 
 {% end block scripts %}
 
