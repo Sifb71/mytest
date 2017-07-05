@@ -6,10 +6,10 @@ from WebApp.handlers.users.address_list import address
 
 urls = [
     (r'^(?i)/MyProfile[/]?([\d^/]+)?[/]?$', profile.UserProfileHandler),
-    (r'/MyProfile', profile.UserProfileHandler , None, "MyProfile"),
+    (r'/MyProfile', profile.UserProfileHandler , None, "u:MyProfile"),
 
     (r'^(?i)/AddressList[/]?([\d^/]+)?[/]?$', address.UserAddressListHandler),
-    (r'/AddressList', address.UserAddressListHandler , None, "AddressList"),
+    (r'/AddressList', address.UserAddressListHandler , None, "u:AddressList"),
 
 
 ]

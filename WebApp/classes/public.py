@@ -19,14 +19,10 @@ class CreateHash():
 
     @staticmethod
     def create(password):
-        ps = hashlib.md5()
-        ps.update(password)
-        _hash = ps.hexdigest()
-        _hash += ps.hexdigest()[:18:-1]
-        _hash = _hash[::-1]
-        ps = hashlib.new('ripemd160')
-        ps.update(_hash)
-        return ps.hexdigest()[7:35]
+        password=password.encode('utf-8')
+        h = hashlib.new('ripemd160')
+        h.update (password)
+        return h.hexdigest()[5:35]
 
     @staticmethod
     def create_user_file(_id):

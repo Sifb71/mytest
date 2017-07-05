@@ -150,4 +150,4 @@ class ModelCreator:
         return x[:-2]
 
 
-# ModelCreator("ftp_user")
+# ModelCreator("User")

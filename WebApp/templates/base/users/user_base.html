@@ -48,8 +48,8 @@
                                         <h4 class="username">Welcome Your FirstName!</h4>
 {#                                        <p>onlinescoer</p>#}
                                         <div class="btn-group margin-bottom-2x" role="group">
-                                            <a href="{{ reverse_url('MyProfile')}}"><button type="button" class="btn btn-default yekan"><i class="fa fa-user"></i>MyProfile</button></a>
-                                           <a href=""><button type="button" class="btn btn-default yekan"><i class="fa fa-sign-out "></i>Logout</button></a>
+                                            <a href="{{ reverse_url('u:MyProfile')}}"><button type="button" class="btn btn-default yekan"><i class="fa fa-user"></i>MyProfile</button></a>
+                                           <a href="{{ reverse_url('logout')}}"><button type="button" class="btn btn-default yekan"><i class="fa fa-sign-out "></i>Logout</button></a>
                                         </div>
                                     </div>
                                 </li>
@@ -72,7 +72,7 @@
                         </div>
                         <ul class="nav navbar-nav ">
                             <li {% if handler.__class__.__name__ == "UserProfileHandler" %}class="active"{% end %}>
-                                <a href="{{ reverse_url('MyProfile') }}">
+                                <a href="{{ reverse_url('u:MyProfile') }}">
                                     <span class="icon fa fa-user"></span><span class="title yekan ">MyProfile</span>
                                 </a>
                             </li>
@@ -81,7 +81,7 @@
 
                         <ul class="nav navbar-nav ">
                             <li {% if handler.__class__.__name__ == "UserAddressListHandler" %}class="active"{% end %}>
-                                <a href="{{ reverse_url('AddressList')}}">
+                                <a href="{{ reverse_url('u:AddressList')}}">
                                     <span class="icon fa fa-file-text-o"></span><span class="title yekan ">Valid Addresss</span>
                                 </a>
                             </li>

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import datetime
 from peewee import PrimaryKeyField
 
 __author__ = 'Sifb71'
@@ -20,4 +21,20 @@ web_db = MySQLDatabase(
 class PeeweeBaseModel(Model):
     class Meta:
         database = web_db
+
+class User(PeeweeBaseModel):
+    id = PrimaryKeyField()
+    email = CharField()
+    password = CharField()
+    first_name = CharField()
+    last_name = CharField()
+    status = CharField()  # user status filed contain this value: active, de_active, deleted
+    created_at = DateTimeField(default=datetime.datetime.now())
+
+class User_address:
+    id = PrimaryKeyField()
+    address = TextField()
+    User = ForeignKeyField(User, to_field=User.id, related_name='user_address')
+    created_at = DecimalField(default=datetime.datetime.now())
+
 

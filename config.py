@@ -14,15 +14,9 @@ class Config:
 
         self.SESSION_TIME = 86400
 
-        self.mobile = {
-            'port': 8081,
-            'redis': {
-                'host': '127.0.0.1', 'port': 6379, 'db': 3, 'password': '1234567890 0987654321foo'
-            }
-        }
 
         self.web = {
-            'port': 8080,
+            'port': 8081,
             'server_ip': '127.0.0.1',
             'server_path': os.path.join(self.applications_root, 'WebApp/'),
             'mysql': {

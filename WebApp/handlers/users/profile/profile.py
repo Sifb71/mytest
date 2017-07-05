@@ -10,6 +10,7 @@ from WebApp.handlers.base import WebBaseHandler, authentication
 
 
 class UserProfileHandler(WebBaseHandler):
+    @authentication()
     @gen.coroutine
     def get(self, *args, **kwargs):
         self.data['title'] = "My Profile"

@@ -10,63 +10,87 @@
         <div class="page-title">
             Welcome to my testing code project
         </div>
-    <div class="my-forms">
-        <div class="col-md-2"></div>
-        <div class="col-md-4 signup-form">
-            <div class="form-title">
-            Signup for new Member!
-                </div>
-
-
-            <form>
-                <div class="form-group ">
-                    <input type="email" class="form-control" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="FirstName">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="LastName">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password">
-                </div>
-
-                <div class="form-group">
-                    <input type="re-password" class="form-control" placeholder="Password">
-                </div>
-                <div class="alert alert-danger" role="alert">
-                    alertBox
-                </div>
-
-                <button type="submit" class="btn btn-success">Signup</button>
-
-            </form>
-
-        </div>
-        <div class="col-md-4">
-            <div>
+        <div class="my-forms">
+            <div class="col-md-2"></div>
+            <div class="col-md-4 signup-form">
                 <div class="form-title">
+                    Signup for new Member!
+                </div>
 
-                Login here!
+
+                <form method="POST" action="{{ reverse_url('signup')}}">
+                    {% module xsrf_form_html() %}
+                    <input type="hidden" name="type" value="signup">
+
+                    <div class="form-group ">
+                        <input type="email" class="form-control" placeholder="Email" name="email">
                     </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="FirstName" name="first_name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="LastName" name="last_name">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Confirm password"
+                               name="re_password">
+                    </div>
+                    {% if handler.errors %}
+                    {% if form_type == 'signup' %}
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            {% for e in handler.errors %}
+                            <li>
+                                {{ e }}
+                            </li>
+                            {%end%}
+                        </ul>
+                    </div>
+                    {%end%}
+                    {%end%}
+
+                    <button type="submit" class="btn btn-success">Signup</button>
+
+                </form>
+
             </div>
-            <form>
-                <div class="form-group t">
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="alert alert-danger" role="alert">
-                    alertBox
-                </div>
+            <div class="col-md-4">
+                <div>
+                    <div class="form-title">
 
-                <button type="submit" class="btn btn-info">login</button>
+                        Login here!
+                    </div>
+                </div>
+                <form>
+                    <div class="form-group t">
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    {% if handler.errors %}
+                    {% if form_type == 'login' %}
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            {% for e in handler.errors %}
+                            <li>
+                                {{ e }}
+                            </li>
+                            {%end%}
+                        </ul>
+                    </div>
+                    {%end%}
+                    {%end%}
 
-            </form>
-        </div>
-        <div class="col-md-2"></div>
+                    <button type="submit" class="btn btn-success">login</button>
+
+                </form>
+            </div>
+            <div class="col-md-2"></div>
         </div>
 
     </div>

@@ -45,17 +45,13 @@ class BaseHandler(tornado.web.RequestHandler, SessionMixin, NotificationMixin):
     def get_current_user(self):
         return self.session.get('current_user')
 
-    @property
-    def current_user_group(self):
-        return self.session.get('user_group')
-
     def is_authenticated(self):
         if self.get_current_user() is not None:
             return True
         return False
 
     def get_user_permissions(self):
-        return self.session.get('user_permission')
+        return self.session.get('user_permissions')
 
     @staticmethod
     def valid_url(url):
@@ -70,7 +66,9 @@ class WebBaseHandler(BaseHandler):
             title="",
             me=None,
             )
-    def on_finish(self):
+        self.errors = []
+
+def on_finish(self):
         pass
 
 def error_handler(self, status_code, **kwargs):
