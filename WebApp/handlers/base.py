@@ -53,6 +53,9 @@ class BaseHandler(tornado.web.RequestHandler, SessionMixin, NotificationMixin):
     def get_user_permissions(self):
         return self.session.get('user_permissions')
 
+    def get_current_user_full_name(self):
+        return self.session.get('full_name')
+
     @staticmethod
     def valid_url(url):
         temp = re.sub("[/||\|&|+|,|:|;|=|?|@|#|||'|<|>|.|-|^|*|(|)|%|!|$]", "", url)

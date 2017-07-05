@@ -33,6 +33,7 @@ class IndexHandler(WebBaseHandler):
                 if u:
                     if CreateHash.create(password) == u['password']:
                         self.session.set("current_user", u['id'])
+                        self.session.set("full_name", u['first_name'] + u' ' + u['last_name'])
                         self.session.set('user_permissions', user_permissions.user_permission)
                         self.redirect(self.reverse_url("u:MyProfile"))
                         return
@@ -63,6 +64,7 @@ class IndexHandler(WebBaseHandler):
                 u = SysUser(email=email, first_name=first_name, last_name=last_name, password=password).insert()
                 if u:
                     self.session.set("current_user", u)
+                    self.session.set("full_name", first_name + u' ' + last_name)
                     self.session.set('user_permissions', user_permissions.user_permission)
                     self.redirect(self.reverse_url("u:MyProfile"))
                     return

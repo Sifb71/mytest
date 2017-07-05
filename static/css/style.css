@@ -1306,3 +1306,7 @@ body.login-page {
 {
   cursor: pointer !important;
 }
+.padding-10
+{
+    padding: 10px;
+}
