@@ -44,6 +44,20 @@ class SysUser:
             Debug.get_exception()
             return False
 
+    def get_one(self):
+        try:
+            u = User.select().where(User.email == self.email).get()
+            return dict(
+                id=u.id,
+                email=u.email,
+                first_name=u.first_name,
+                last_name=u.last_name,
+                password=u.password
+            )
+        except:
+            Debug.get_exception()
+            return dict()
+
 
 class SysUser_address:
     def __init__(self, id=None, address=None, user=None, created_at=None):
