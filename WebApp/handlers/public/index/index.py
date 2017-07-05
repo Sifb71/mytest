@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import re
 from tornado import gen
 from WebApp.classes.permissions import user_permissions
 from WebApp.classes.public import RenderToNotificationHtml, CreateHash
@@ -48,6 +49,9 @@ class IndexHandler(WebBaseHandler):
                 pass
             else:
                 self.errors.append('Please Enter All Parameter.')
+            if not re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", email):
+                self.errors.append('Your email address is incorrect.')
+
             if SysUser(email=email).is_exist():
                 self.errors.append('The email is already exist.')
             if password != re_password:
@@ -67,15 +71,6 @@ class IndexHandler(WebBaseHandler):
 
         self.render("base/public/index/index.html", **self.data)
 
-
-class SignupHandler(WebBaseHandler):
-    @gen.coroutine
-    def get(self, *args, **kwargs):
-        self.redirect(self.reverse_url('index'))
-
-    @gen.coroutine
-    def post(self, *args, **kwargs):
-        pass
 
 
 class LogoutHandler(WebBaseHandler):

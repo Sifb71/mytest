@@ -46,7 +46,10 @@ class SysUser:
 
     def get_one(self):
         try:
-            u = User.select().where(User.email == self.email).get()
+            if self.email:
+                u = User.select().where(User.email == self.email).get()
+            else:
+                u = User.select().where(User.id == self.id).get()
             return dict(
                 id=u.id,
                 email=u.email,
@@ -57,6 +60,14 @@ class SysUser:
         except:
             Debug.get_exception()
             return dict()
+
+    def update(self, **kwargs):
+        try:
+            User.update(**kwargs).where(User.id == self.id).execute()
+            return True
+        except:
+            Debug.get_exception()
+            return False
 
 
 class SysUser_address:

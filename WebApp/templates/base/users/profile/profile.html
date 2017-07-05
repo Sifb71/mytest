@@ -15,31 +15,42 @@
                     <div class="panel-heading"><h3 class="panel-title">Profile Panel</h3></div>
                     <div class="panel-body">
                         <div class="col-xs-6">
-                            <form>
+                            <form method="POST" action="">
+                                {% module xsrf_form_html() %}
                                 <div class="form-group ">
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="email" class="form-control" placeholder="Email" name="email"
+                                           value="{{ user['email'] }}">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="FirstName">
+                                    <input type="text" class="form-control" placeholder="FirstName" name='first_name'
+                                           value="{{ user['first_name']}}">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="LastName">
+                                    <input type="text" class="form-control" placeholder="LastName" name="last_name"
+                                           value="{{ user['last_name'] }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Address">
+                                    <input type="text" class="form-control" placeholder="Address" name="address">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="NewPassword">* If you want to change your password, fill this
                                         field: </label>
-                                    <input type="password" class="form-control" id="NewPassword" name="NewPassword"
+                                    <input type="password" class="form-control" id="NewPassword" name="password"
                                            placeholder="NewPassword">
                                 </div>
-                                <div class="alert alert-danger" role="alert">
-                                    alertBox
+                                {% if message %}
+                                <div class="alert {% if message['type'] == 'errors' %} alert-danger{%else%} alert-success {%end%}" role="alert">
+                                    <ul>
+                                        {% for e in message['value'] %}
+                                        <li>
+                                            {{ e }}
+                                        </li>
+                                        {% end %}
+                                    </ul>
                                 </div>
-
+                                {%end%}
                                 <button type="submit" class="btn btn-success">Save</button>
 
                             </form>
