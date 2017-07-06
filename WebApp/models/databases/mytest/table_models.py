@@ -22,6 +22,7 @@ class PeeweeBaseModel(Model):
     class Meta:
         database = web_db
 
+
 class User(PeeweeBaseModel):
     id = PrimaryKeyField()
     email = CharField()
@@ -31,10 +32,17 @@ class User(PeeweeBaseModel):
     status = CharField()  # user status filed contain this value: active, de_active, deleted
     created_at = DateTimeField(default=datetime.datetime.now())
 
-class User_address:
+
+class User_address(PeeweeBaseModel):
     id = PrimaryKeyField()
     address = TextField()
-    User = ForeignKeyField(User, to_field=User.id, related_name='user_address')
-    created_at = DecimalField(default=datetime.datetime.now())
+    user = ForeignKeyField(User, to_field=User.id, related_name='user_address')
+    street_number = CharField()
+    route = CharField()
+    locality = CharField()
+    street_number2 = CharField()
+    country = CharField()
+    created_at = DateTimeField(default=datetime.datetime.now())
+    is_validate = IntegerField(1)
 
 

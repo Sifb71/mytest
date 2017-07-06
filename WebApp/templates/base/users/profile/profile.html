@@ -11,130 +11,148 @@
 {% block container %}
 
 <div class="container-fluid">
-    <div class="side-body">
-        <div class="row">
-            <div class="col-xs-12">
+<div class="side-body">
+    <div class="row">
+        <div class="col-xs-12">
 
 
-                <div class="panel panel-primary margin-top-55">
-                    <div class="panel-heading"><h3 class="panel-title">Profile Panel</h3></div>
-                    <form method="POST" action="">
+            <div class="panel panel-primary margin-top-55">
+                <div class="panel-heading"><h3 class="panel-title">Profile Panel</h3></div>
+                <form method="POST" action="">
 
-                        <div class="panel-body">
-                            <div class="col-xs-6">
-                                {% module xsrf_form_html() %}
-                                <div class="form-group ">
-                                    <input type="email" class="form-control" placeholder="Email" name="email"
-                                           value="{{ user['email'] }}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="FirstName" name='first_name'
-                                           value="{{ user['first_name']}}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="LastName" name="last_name"
-                                           value="{{ user['last_name'] }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Address" name="address">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="NewPassword">* If you want to change your password, fill this
-                                        field: </label>
-                                    <input type="password" class="form-control" id="NewPassword" name="password"
-                                           placeholder="NewPassword">
-                                </div>
-                                {% if message %}
-                                <div class="alert {% if message['type'] == 'errors' %} alert-danger{%else%} alert-success {%end%}"
-                                     role="alert">
-                                    <ul>
-                                        {% for e in message['value'] %}
-                                        <li>
-                                            {{ e }}
-                                        </li>
-                                        {% end %}
-                                    </ul>
-                                </div>
-                                {%end%}
-                                <button type="submit" class="btn btn-success">Save</button>
-
-
+                    <div class="panel-body">
+                        <div class="col-xs-6">
+                            {% module xsrf_form_html() %}
+                            <div class="form-group ">
+                                <input type="email" class="form-control" placeholder="Email" name="email"
+                                       value="{{ user['email'] }}">
                             </div>
-                            <div class="col-xs-6">
-                                <div id="locationField">
-                                    <label>
-                                    * for choose a true address, choose your address from drop list
-                                        </label>
-                                    <div class="form-group ">
-                                        <input class="form-control" id="autocomplete" placeholder="Enter your address"
-                                               onFocus="geolocate()" type="text">
-                                    </div>
-
-                                </div>
-
-                                <table id="address">
-                                    <tr>
-                                        <td>Street address</td>
-                                        <td class="slimField"><input class="field" id="street_number" disabled="true">
-                                        </td>
-                                        <td colspan="2"><input class="field" id="route"
-                                                               disabled="true"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>City</td>
-                                        <td class="wideField" colspan="3"><input class="field" id="locality"
-                                                                                 disabled="true"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>State</td>
-                                        <td><input class="field" id="administrative_area_level_1"
-                                                   disabled="true">
-                                        </td>
-                                        <!--<td >Zip code</td>-->
-                                        <td><input type="hidden" class="field" id="postal_code" disabled="true">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Country</td>
-                                        <td colspan="3"><input class="field" id="country"
-                                                               disabled="true"></td>
-                                    </tr>
-                                </table>
-
-                                <div id="valid_address_box" class="col-xs-5 alert alert-success margin-top-15 padding-10" >
-                                    Your Address Is Valid!
-                                </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="FirstName" name='first_name'
+                                       value="{{ user['first_name']}}">
                             </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="LastName" name="last_name"
+                                       value="{{ user['last_name'] }}">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Address" name="address">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="NewPassword">* If you want to change your password, fill this
+                                    field: </label>
+                                <input type="password" class="form-control" id="NewPassword" name="password"
+                                       placeholder="NewPassword">
+                            </div>
+                            {% if message %}
+                            <div class="alert {% if message['type'] == 'errors' %} alert-danger{%else%} alert-success {%end%}"
+                                 role="alert">
+                                <ul>
+                                    {% for e in message['value'] %}
+                                    <li>
+                                        {{ e }}
+                                    </li>
+                                    {% end %}
+                                </ul>
+                            </div>
+                            {%end%}
+                            <button type="submit" class="btn btn-success">Save</button>
 
 
                         </div>
-                    </form>
+                        <div class="col-xs-6">
+                            <div id="locationField">
+                                <label>
+                                    * for choose a true address, choose your address from drop list
+                                </label>
 
-                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" id="autocomplete" placeholder="Enter your address"
+                                           onFocus="geolocate()" type="text" name="address"
+                                           value="{{ address['address'] }}">
+                                </div>
+
+                            </div>
+
+                            <table id="address">
+                                <tr>
+                                    <td>Street address</td>
+                                    <td class="slimField"><input class="field" id="street_number" readonly
+                                                                 name="street_number"
+                                                                 value="{{ address['street_number'] }}">
+                                    </td>
+                                    <td colspan="2"><input class="field" id="route" name="route"
+                                                           value="{{ address['route'] }}" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td>City</td>
+                                    <td class="wideField" colspan="3"><input class="field" id="locality"
+                                                                             value="{{address['locality'] }}"
+                                                                             readonly name="locality"></td>
+                                </tr>
+                                <tr>
+                                    <td>State</td>
+                                    <td><input class="field" id="street_number2" name="street_number2"
+                                               value="{{ address['street_number2'] }}"
+                                               readonly>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Country</td>
+                                    <td colspan="3"><input class="field" id="country" name="country"
+                                                           value="{{ address['country']}}"
+                                                           readonly></td>
+                                </tr>
+                            </table>
+
+                            <div id="valid_address_box"
+                                 class="col-xs-5 alert alert-success margin-top-15 padding-10">
+                                Your Address Is Valid!
+                            </div>
+
+                            <div id="un_valid_address_box"
+                                 class="col-xs-5 alert alert-danger margin-top-15 padding-10">
+                                Your Address Is UnValid!
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
 
             </div>
-            <div></div>
 
         </div>
+        <div></div>
+
     </div>
+</div>
 
 
-    {% end block %}
-    {% block scripts %}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdwgjqHFgTKoB5nBt3B7TMDpy7Tz3jUEE&libraries=places&callback=initAutocomplete"
-            async defer></script>
-    <script>
+{% end block %}
+{% block scripts %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdwgjqHFgTKoB5nBt3B7TMDpy7Tz3jUEE&libraries=places&callback=initAutocomplete"
+        async defer></script>
+<script>
+    {%
+        if address['is_validate'] %}
+        $('#un_valid_address_box').hide();
+
+        {% else %}
         $('#valid_address_box').hide();
+
+        {%   end %}
+
         var placeSearch, autocomplete;
         var componentForm = {
             street_number: 'short_name',
             route: 'long_name',
             locality: 'long_name',
-            administrative_area_level_1: 'short_name',
-            country: 'long_name',
-            postal_code: 'short_name'
+            street_number2: 'short_name',
+            country: 'long_name'
         };
 
         function initAutocomplete() {
@@ -168,6 +186,7 @@
                 }
             }
             $('#valid_address_box').show();
+            $('#un_valid_address_box').hide();
         }
 
         // Bias the autocomplete object to the user's geographical location,
@@ -192,7 +211,7 @@
                     $('#street_number').val('');
                     $('#route').val('');
                     $('#locality').val('');
-                    $('#administrative_area_level_1').val('');
+                    $('#street_number2').val('');
                     $('#country').val('');
                     $('#valid_address_box').hide();
                 }
@@ -201,10 +220,10 @@
                     $('#street_number').val('');
                     $('#route').val('');
                     $('#locality').val('');
-                    $('#administrative_area_level_1').val('');
+                    $('#street_number2').val('');
                     $('#country').val('');
                     $('#valid_address_box').hide();
                 }
         )
-    </script>
-    {%end block %}
+</script>
+{%end block %}

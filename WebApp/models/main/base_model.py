@@ -71,11 +71,18 @@ class SysUser:
 
 
 class SysUser_address:
-    def __init__(self, id=None, address=None, user=None, created_at=None):
-        self.id = id
+    def __init__(self, _id=None, address=None, user=None, created_at=datetime.datetime.now(), street_number=None, route=None,
+                 locality=None, street_number2=None, country=None, is_validate=None):
+        self.id = _id
         self.address = address
         self.user = user
         self.created_at = created_at
+        self.street_number = street_number
+        self.route = route
+        self.locality = locality
+        self.street_number2 = street_number2
+        self.country = country
+        self.is_validate = is_validate
 
 
     def insert(self):
@@ -83,9 +90,70 @@ class SysUser_address:
             x = User_address.insert(
                 address=self.address,
                 user=self.user,
-                created_at=self.created_at
+                created_at=self.created_at,
+                street_number=self.street_number,
+                route=self.route,
+                locality=self.locality,
+                street_number2=self.street_number2,
+                country=self.country,
+                is_validate=self.is_validate
             ).execute()
             return x if x else False
         except:
+            Debug.get_exception()
             return False
+
+    def update(self, **kwargs):
+        try:
+            x = User_address.update(**kwargs).where(User_address.id == self.id).execute()
+            return True
+        except:
+            Debug.get_exception()
+            return False
+
+    def update_or_insert(self):
+        try:
+            a = User_address.select().where(User_address.user == self.user).count()
+            if a:
+                User_address.update(address=self.address,
+                                    created_at=self.created_at,
+                                    street_number=self.street_number,
+                                    route=self.route,
+                                    locality=self.locality,
+                                    street_number2=self.street_number2,
+                                    country=self.country,
+                                    is_validate=self.is_validate).where(User_address.user == self.user).execute()
+            else:
+                if self.address:
+                    self.insert()
+        except:
+            Debug.get_exception()
+            return False
+
+    def get_user_address(self):
+        try:
+            a = User_address.select().where(User_address.user == self.user).get()
+            return dict(
+                address = a.address,
+                user = a.user,
+                street_number = a.street_number,
+                route = a.route,
+                locality = a.locality,
+                street_number2 = a.street_number2,
+                country = a.country,
+                is_validate = a.is_validate
+            )
+        except:
+            return dict(
+                address = '',
+                user = '',
+                street_number ='',
+                route = '',
+                locality = '',
+                street_number2 = '',
+                country = '',
+                is_validate = 0
+            )
+
+
 

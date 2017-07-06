@@ -3,7 +3,7 @@
 import re
 from tornado import gen
 from WebApp.classes.public import CreateHash
-from WebApp.models.main.base_model import SysUser
+from WebApp.models.main.base_model import SysUser, SysUser_address
 
 
 __author__ = 'Sifb71'
@@ -18,8 +18,10 @@ class UserProfileHandler(WebBaseHandler):
         self.data['title'] = "My Profile"
         self.data['user'] = SysUser(_id=self.current_user).get_one()
         self.data['message'] = self.session.get('message')
+        self.data['address'] = SysUser_address(user=self.current_user).get_user_address()
         self.session.set('message', None)
         self.render("base/users/profile/profile.html", **self.data)
+
     @authentication()
     @gen.coroutine
     def post(self, *args, **kwargs):
@@ -42,6 +44,19 @@ class UserProfileHandler(WebBaseHandler):
                     self.errors.append('Password must be at least 5 character.')
                 else:
                     __data['password'] = CreateHash().create(password)
+
+            address = self.get_argument('address', '')
+            street_number = self.get_argument('street_name', '')
+            route = self.get_argument('route', '')
+            locality = self.get_argument('locality', '')
+            street_number2 = self.get_argument('street_number2', '')
+            country = self.get_argument('country', '')
+            validation = 0
+            if country:
+                validation = 1
+            SysUser_address(address=address, street_number=street_number, user=self.current_user, route=route,
+                            street_number2=street_number2, country=country, is_validate=validation,
+                            locality=locality).update_or_insert()
             if not self.errors:
                 SysUser(_id=self.current_user).update(**__data)
                 self.session.set('message', dict(type='message', value=['Your change saved']))
