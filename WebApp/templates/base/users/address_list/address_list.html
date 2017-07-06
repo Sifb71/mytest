@@ -43,6 +43,8 @@
                                                                 <td class="text-center">address</td>
 
                                                             </tr>
+                                                            {% set row = (page-1)*10 +1 %}
+
                                                             {% if len(address) == 0 %}
                                                                 <tr role="row">
                                                                     <td class="text-center font-size-15" colspan="3">
@@ -54,7 +56,6 @@
                                                             {% end %}
                                                             {% for a in address %}
                                                             {% set flag = True %}
-                                                            {% set row = (page-1)*10 +1 %}
                                                             <tr role="row" {% if flag %}class="odd"{% else %}class="even"{% end %}>
                                                             <td class="text-green text-center">{{ row }}</td>
                                                             <td class="text-center">{{ a['user_full_name'] }}</td>
