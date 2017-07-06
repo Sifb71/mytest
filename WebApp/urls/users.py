@@ -10,6 +10,5 @@ urls = [
 
     (r'^(?i)/AddressList[/]?([\d^/]+)?[/]?$', address.UserAddressListHandler),
     (r'/AddressList', address.UserAddressListHandler , None, "u:AddressList"),
-
-
+    (r'/AddressList/(page)', address.UserAddressListHandler, None, "u:AddressList_by_page")
 ]

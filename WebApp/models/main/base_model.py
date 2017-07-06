@@ -71,7 +71,8 @@ class SysUser:
 
 
 class SysUser_address:
-    def __init__(self, _id=None, address=None, user=None, created_at=datetime.datetime.now(), street_number=None, route=None,
+    def __init__(self, _id=None, address=None, user=None, created_at=datetime.datetime.now(), street_number=None,
+                 route=None,
                  locality=None, street_number2=None, country=None, is_validate=None):
         self.id = _id
         self.address = address
@@ -134,26 +135,56 @@ class SysUser_address:
         try:
             a = User_address.select().where(User_address.user == self.user).get()
             return dict(
-                address = a.address,
-                user = a.user,
-                street_number = a.street_number,
-                route = a.route,
-                locality = a.locality,
-                street_number2 = a.street_number2,
-                country = a.country,
-                is_validate = a.is_validate
+                address=a.address,
+                user=a.user,
+                street_number=a.street_number,
+                route=a.route,
+                locality=a.locality,
+                street_number2=a.street_number2,
+                country=a.country,
+                is_validate=a.is_validate
             )
         except:
             return dict(
-                address = '',
-                user = '',
-                street_number ='',
-                route = '',
-                locality = '',
-                street_number2 = '',
-                country = '',
-                is_validate = 0
+                address='',
+                user='',
+                street_number='',
+                route='',
+                locality='',
+                street_number2='',
+                country='',
+                is_validate=0
             )
 
+    @staticmethod
+    def get_all_valid_address(_page=1, _count=10):
+        try:
+            a = User_address().select(
+                User_address.id,
+                User.first_name,
+                User.last_name,
+                User_address.address
+            ). \
+                join(User, on=User_address.user == User.id). \
+                where(User_address.is_validate == 1).naive().paginate(_page,_count)
+            ls = []
+            for ad in a:
+                ls.append(dict(
+                    id=ad.id,
+                    user_full_name=ad.first_name + u' ' + ad.last_name,
+                    address=ad.address
+                ))
+            return ls
 
+        except:
+            Debug.get_exception()
+            return []
+
+    @staticmethod
+    def get_count_all_valid():
+        try:
+            return User_address.select().where(User_address.is_validate == 1).count()
+        except:
+            Debug.get_exception()
+            return 0
 

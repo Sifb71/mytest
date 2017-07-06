@@ -43,22 +43,32 @@
                                                                 <td class="text-center">address</td>
 
                                                             </tr>
+                                                            {% if len(address) == 0 %}
+                                                                <tr role="row">
+                                                                    <td class="text-center font-size-15" colspan="3">
+
+                                                                    Nothing to show!
+                                                                        </td>
+                                                            </tr>
+
+                                                            {% end %}
+                                                            {% for a in address %}
                                                             {% set flag = True %}
-
-
+                                                            {% set row = (page-1)*10 +1 %}
                                                             <tr role="row" {% if flag %}class="odd"{% else %}class="even"{% end %}>
-                                                            <td class="text-green text-center">1</td>
-                                                            <td  class="text-center">Iman FeyzBakhsh</td>
-                                                            <td class="text-center">Attar Street - Qaen</td>
+                                                            <td class="text-green text-center">{{ row }}</td>
+                                                            <td class="text-center">{{ a['user_full_name'] }}</td>
+                                                            <td class="text-center">{{ a['address'] }}</td>
 
                                                             </tr>
 
                                                             {% if flag %}
                                                             {% set flag = False %}
+                                                            {% set row = row +1 %}
                                                             {% else %}
                                                             {% set flag = True %}
                                                             {% end %}
-
+                                                            {%end%}
 
                                                             </tbody>
                                                         </table>
@@ -66,23 +76,24 @@
                                                             <div class="dataTables_paginate paging_simple_numbers"
                                                                  id="DataTables_Table_0_paginate">
                                                                 <ul class="pagination">
-
+{% if page > 1 %}
                                                                     <li class="paginate_button previous"
-                                                                        id="DataTables_Table_0_previous"><a href=""
+                                                                        id="DataTables_Table_0_previous"><a href="{{ reverse_url('u:AddressList_by_page', page -1) }}"
                                                                                                             aria-controls="DataTables_Table_0"
                                                                                                             tabindex="0">prev</a>
                                                                     </li>
-
-                                                                    <li class="paginate_button active"><a href="#"
+{%end%}
+                                                                    <li class="paginate_button active"><a href="{{ reverse_url('u:AddressList_by_page', page  ) }}"
                                                                                                           aria-controls="DataTables_Table_0"
-                                                                                                          tabindex="0">2</a>
+                                                                                                          tabindex="0">{{ page }}</a>
                                                                     </li>
-
+    {% if count_all > row %}
                                                                     <li class="paginate_button next"
-                                                                        id="DataTables_Table_0_next"><a href=""
+                                                                        id="DataTables_Table_0_next"><a href="{{ reverse_url('u:AddressList_by_page', page +1  ) }}"
                                                                                                         aria-controls="DataTables_Table_0"
                                                                                                         tabindex="0">next</a>
                                                                     </li>
+                                                                    {%end%}
                                                                 </ul>
                                                             </div>
                                                             <div class="clear"></div>
